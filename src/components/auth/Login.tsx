@@ -25,7 +25,7 @@ type FormValues = {
 }
 
 export default function SignupCard() {
-  const { register ,handleSubmit , formState:{errors , isSubmitting}}  = useForm<FormValues>();
+  const { register ,handleSubmit , formState:{errors }}  = useForm<FormValues>();
   const [showPassword, setShowPassword] = useState(false)
  
   const handleLogin = async ( values : FormValues) =>{
