@@ -35,21 +35,6 @@ export default function Footer() {
         spacing={4}
         justify={'center'}
         align={'center'}>
-        <Logo />
-        <Stack direction={'row'} spacing={6}>
-          <Box as="a" href={'#'}>
-            Home
-          </Box>
-          <Box as="a" href={'#'}>
-            About
-          </Box>
-          <Box as="a" href={'#'}>
-            Blog
-          </Box>
-          <Box as="a" href={'#'}>
-            Contact
-          </Box>
-        </Stack>
       </Container>
 
       <Box
@@ -62,7 +47,7 @@ export default function Footer() {
           py={4}
           direction={{ base: 'column', md: 'row' }}
           spacing={4}
-          justify={{ base: 'center', md: 'space-between' }}
+          justify={{ base: 'center'}}
           align={{ base: 'center', md: 'center' }}>
           <Text textAlign={'center'}>@Impact Fusion , {new Date().getFullYear()}</Text>
         </Container>

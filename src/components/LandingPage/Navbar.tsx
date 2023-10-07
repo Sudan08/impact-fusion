@@ -63,7 +63,7 @@ export default function Navbar() {
           />
           <HStack spacing={8} alignItems={'center'}>
             <Box>
-              <Image src="./logo.png" alt={'hamro_logo'} height={24} width={24} />
+              <Image src="./logo.svg" alt={'hamro_logo'} height={24} width={24} />
             </Box>
             <HStack as={'nav'} spacing={4} display={{ base: 'none', md: 'flex' }}>
               {Links.map((link) => (

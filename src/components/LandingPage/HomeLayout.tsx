@@ -7,7 +7,7 @@ const HomeLayout = (
     return (
         <>
             <Navbar/>
-            {children}
+                {children}
             <Footer/>
         </>
     )

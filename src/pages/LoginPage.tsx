@@ -1,16 +1,16 @@
-import SignUp from '../components/auth/Signup';
+import Login from '../components/auth/Login';
 
 import HomeLayout from '../components/LandingPage/HomeLayout';
 
-const Home = () =>{
+const LoginPage = () =>{
     return(
         <div>
             <HomeLayout>
-                <SignUp />
+                <Login />
             </HomeLayout>
           
         </div>
     )
 }
 
-export default Home;
+export default LoginPage;
