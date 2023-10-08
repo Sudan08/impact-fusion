@@ -13,16 +13,19 @@ import {
     useColorModeValue,
     FormErrorMessage,
     HStack,
-  } from '@chakra-ui/react'
+    useToast  } from '@chakra-ui/react'
   import { useState } from 'react'
   import { useForm } from 'react-hook-form'
   import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
-  import apiUrl from '../../api/axiosConfig'
+//   import apiUrl from '../../api/axiosConfig'
   import { Link } from 'react-router-dom'
+  import { useLoginMutation } from './authApiSlice'
+import { useAppDispatch } from '../../api/store'
+import { setInitialCredentials } from './authSlice'
+import { useNavigate } from 'react-router-dom'
 
-  
   type FormValues = {
-      userName : string
+      username : string
       email : string   
       password : string    
   }
@@ -30,12 +33,57 @@ import {
   export default function SignupCard() {
     const { register ,handleSubmit , formState:{errors }}  = useForm<FormValues>();
     const [showPassword, setShowPassword] = useState(false)
-   
+    const toast = useToast();
+    const [login ] = useLoginMutation();
+    const dispatch = useAppDispatch();
+    const navigate = useNavigate();
     const handleLogin = async ( values : FormValues) =>{
-      apiUrl.post("/auth/users" , {
-          
-      })
+        try {
+            const data : any = await login(values).unwrap();
+            if (data.access){
+                dispatch(
+                    setInitialCredentials({
+                        accessToken : data.access,
+                        refreshToken : data.refresh,
+                        username : values.username,
+                    })   
+                )
+                toast({
+                    title : "Account Login Success",
+                    status : 'success',
+                    duration : 3000,
+                })
+                navigate('/dashboard');
+            }
+        }
+        catch (error) {
+            toast({
+                title : "Account Login Failed",
+                status : 'error',
+                duration : 3000,
+            })
+        }
+
     }
+
+    // const handleGoogleAuth = async  () => {
+    //     try {
+    //         const url = 'http://nasa-hackathon.merodera.com';
+    //         const response = await fetch(`http://nasa-hackathon.merodera.com/auth/o/google-oauth2/?redirect_uri=http://nasa-hackathon.merodera.com`);
+    //         const data = await response.json(); 
+    //         console.log(data);                                  
+
+    //     }
+    //     catch (error) {
+    //         console.log(error);
+    //         toast({
+    //             title : "Account Login Failed",
+    //             status : 'error',
+    //             duration : 3000,
+    //         })
+    //     }
+    // }
+
   
     return (
       <Flex
@@ -46,7 +94,7 @@ import {
         <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
           <Stack align={'center'}>
             <Heading fontSize={'4xl'} textAlign={'center'}>
-              Sign up
+              Log in
             </Heading>
             <Text fontSize={'lg'} color={'gray.600'}>
               to enjoy all of our cool features ✌️
@@ -63,13 +111,13 @@ import {
           <form onSubmit={handleSubmit(handleLogin)}>
             <Stack spacing={4} >
               <Box>
-                  <FormControl id="userName" isInvalid={Boolean(errors.userName)}>
-                    <FormLabel>UserName</FormLabel>
-                    <Input type="text" { ...register('userName', {
+                  <FormControl id="username" isInvalid={Boolean(errors.username)}>
+                    <FormLabel>Username</FormLabel>
+                    <Input type="text" { ...register('username', {
                       required : 'This is required'
                     })} />
                     <FormErrorMessage>
-                      {errors.userName && errors.userName.message}
+                      {errors.username && errors.username.message}
                     </FormErrorMessage>
                   </FormControl>
               </Box>
@@ -113,6 +161,13 @@ import {
                  <Text> New user?</Text> 
                  <Link to={'/signup'}><Text color={'blue.400'}>SignUp</Text></Link>
               </HStack>
+              <Stack>
+              {/* <Button w={'full'} variant={'outline'} leftIcon={<FcGoogle />} onClick={handleGoogleAuth}>
+                <Center>
+                    <Text>Sign in with Google</Text>
+                </Center>
+              </Button> */}
+              </Stack>
             </Stack>
             </form>
           </Box>

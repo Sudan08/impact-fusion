@@ -17,6 +17,7 @@ import {
 } from '@chakra-ui/react'
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
 import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 interface Props {
   children: React.ReactNode
@@ -63,7 +64,9 @@ export default function Navbar() {
           />
           <HStack spacing={8} alignItems={'center'}>
             <Box>
+              <Link to="/">
               <Image src="./logo.svg" alt={'hamro_logo'} height={24} width={24} />
+              </Link>
             </Box>
             <HStack as={'nav'} spacing={4} display={{ base: 'none', md: 'flex' }}>
               {Links.map((link) => (

@@ -17,8 +17,8 @@ import {
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
-import apiUrl from '../../api/axiosConfig'
 import { Link } from 'react-router-dom'
+import { useToast } from '@chakra-ui/react';
 
 type FormValues = {
     userName : string
@@ -29,10 +29,29 @@ type FormValues = {
 export default function SignupCard() {
   const { register ,handleSubmit , formState:{errors }}  = useForm<FormValues>();
   const [showPassword, setShowPassword] = useState(false)
- 
-  const handleLogin = async ( values : FormValues) =>{
-    apiUrl.post("/auth/users" , {
-        
+  const toast = useToast();
+  const handleSignup = async ( values : FormValues) =>{
+    fetch('http://172.105.62.58/auth/users/',{
+      method : 'POST',
+      headers : {
+        'Content-Type' : 'application/json'
+      },
+      body : JSON.stringify(values)
+    })
+    .then(function (){
+      toast({
+        title : "Account Created",
+        description : "Please Login to continue",
+        status : 'success',
+        duration : 3000,
+      });
+    })
+    .catch(function (){
+      toast({
+        title : "Account Creation Failed",
+        status : 'error',
+        duration : 3000,
+      });
     })
   }
 
@@ -59,7 +78,7 @@ export default function SignupCard() {
           width={'max'}
           px={'16'}
           >
-        <form onSubmit={handleSubmit(handleLogin)}>
+        <form onSubmit={handleSubmit(handleSignup)}>
           <Stack spacing={4} >
             <Box>
                 <FormControl id="userName" isInvalid={Boolean(errors.userName)}>
@@ -127,7 +146,7 @@ export default function SignupCard() {
               </Button>
             </Stack>
             <HStack pt={6} justifyContent={'center'}>
-                 <Text> Already User ?</Text> 
+                 <Text> Already a User ?</Text> 
                  <Link to={'/login'}><Text color={'blue.400'}>Login</Text></Link>
               </HStack>
           </Stack>
