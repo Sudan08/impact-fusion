@@ -70,10 +70,9 @@ import { useNavigate } from 'react-router-dom'
 
     const handleGoogleAuth = async  () => {
         try {
-            const response = await fetch(`http://172.105.62.58/auth/o/google-oauth2/?redirect_uri=http://172.105.62.58/`);
+            const response = await fetch(`http://nasa-hackathon.tnbswap.com/auth/o/google-oauth2/?redirect_uri=http://nasa-hackathon.tnbswap.com`);
             const data = await response.json(); 
-            console.log(data);                                  
-
+            window.location.replace(data.authorization_url);
         }
         catch (error) {
             console.log(error);

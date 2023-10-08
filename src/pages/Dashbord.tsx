@@ -3,26 +3,10 @@ import HomeLayout from "../components/LandingPage/HomeLayout";
 import { Input ,InputRightElement ,InputGroup } from "@chakra-ui/react";
 import { BsSearch } from "react-icons/bs";
 import ProjectCard from "../components/project/ProjectCard";
+import { projects } from "../data/fakeData";
 
-const projects = [{
-    name : 'Log Tracker',
-    description : 'A simple log tracker app',
-    techStack : ['Nodejs' , 'Typescript' ,'Reactjs' , 'Chakra UI'],
-    rating : '4.5'
-},
-{
-    name : 'Water Tracker',
-    description : 'A simple water tracker app',
-    techStack : ['Nodejs' , 'Typescript' ,'Reactjs' , 'Chakra UI'],
-    rating : '4.3'
-}]
 
 const Dashboard = () => {
-    // const [search , setSearch] = React.useState<string>("")
-    // const handleSearch = ( value : string) => {
-    //     console.log(value);
-    // }
-    // const searchRef = useRef<HTMLInputElement>(null);
     return (
         <HomeLayout>
             <HStack mx={[12,24,36]} my={[4,8,12]} justifyContent={"center"} > 

@@ -21,7 +21,7 @@ import { Link } from 'react-router-dom'
 import { useToast } from '@chakra-ui/react';
 
 type FormValues = {
-    userName : string
+    username : string
     email : string   
     password : string    
 }
@@ -81,13 +81,13 @@ export default function SignupCard() {
         <form onSubmit={handleSubmit(handleSignup)}>
           <Stack spacing={4} >
             <Box>
-                <FormControl id="userName" isInvalid={Boolean(errors.userName)}>
-                  <FormLabel>UserName</FormLabel>
-                  <Input type="text" { ...register('userName', {
+                <FormControl id="username" isInvalid={Boolean(errors.username)}>
+                  <FormLabel>Username</FormLabel>
+                  <Input type="text" { ...register('username', {
                     required : 'This is required'
                   })} />
                   <FormErrorMessage>
-                    {errors.userName && errors.userName.message}
+                    {errors.username && errors.username.message}
                   </FormErrorMessage>
                 </FormControl>
             </Box>

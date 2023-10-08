@@ -1,6 +1,7 @@
 
 import { Stack, Text, Button, VStack, HStack } from '@chakra-ui/react'
 import { AiFillStar } from 'react-icons/ai'
+import { Link } from 'react-router-dom'
 
 type ProjectCardProps = {
     project : {
@@ -8,12 +9,12 @@ type ProjectCardProps = {
     description : string
     techStack : string[]
     rating : string
+    id : number
     }
 }
 
 export default function ProjectCard( { project } : ProjectCardProps ) {
-    console.log(project.name);
-    const {name , description , techStack , rating} = project;
+    const {name , description , techStack , rating , id} = project;
     
   return (
     <Stack p="8" boxShadow="lg" m="4" borderRadius="sm">
@@ -39,7 +40,11 @@ export default function ProjectCard( { project } : ProjectCardProps ) {
             </HStack >
         </VStack>
         <Stack direction={{ base: 'column', md: 'row' }}>
-          <Button colorScheme="green">View Project</Button>
+        <Button color={'blue.500'} >
+            <Link to={`/project/${id}`}> 
+            View Project
+            </Link>
+        </Button>
         </Stack>
         </HStack>
       </VStack>
