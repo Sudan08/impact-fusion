@@ -9,7 +9,6 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
-  MenuDivider,
   useDisclosure,
   useColorModeValue,
   Stack,
@@ -18,12 +17,15 @@ import {
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
 import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+import { useAppSelector } from '../../api/store'
+import { selectAccessToken } from '../auth/authSlice'
+import { logout } from '../auth/authSlice'
+import { useDispatch } from 'react-redux'
 
 interface Props {
   children: React.ReactNode
 }
 
-const login = false as boolean;
 
 const Links = ['Dashboard', 'Projects', 'Team']
 
@@ -49,11 +51,12 @@ const NavLink = (props: Props) => {
 export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const navigate = useNavigate();
-
+  const isAuthenticated : string  =  useAppSelector(selectAccessToken) ?? "";
+  const dispatch = useDispatch();
 
   return (
     <>
-      <Box bg={'transparent'} px={'36'}>
+      <Box bg={'transparent'} px={['8','16','36']}>
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
           <IconButton
             size={'md'}
@@ -75,7 +78,7 @@ export default function Navbar() {
             </HStack>
           </HStack>
           <Flex alignItems={'center'}>
-            {login ? <Menu>
+            {isAuthenticated.length > 0 ? <Menu>
               <MenuButton
                 as={Button}
                 rounded={'full'}
@@ -91,10 +94,9 @@ export default function Navbar() {
              
               </MenuButton>
               <MenuList>
-                <MenuItem>SignUp</MenuItem>
-                <MenuItem>Login</MenuItem>
-                <MenuDivider />
-                <MenuItem>Link 3</MenuItem>
+                <MenuItem>My Profile</MenuItem>
+                <MenuItem>My Projects</MenuItem>
+                <MenuItem onClick={() => dispatch(logout())}>Sign Out</MenuItem>
               </MenuList>
             </Menu> :    <Button colorScheme='blue' onClick={() => navigate("/signup")}>
                   SignUp

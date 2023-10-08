@@ -1,7 +1,21 @@
-import { HStack } from "@chakra-ui/react";
+import { HStack, VStack } from "@chakra-ui/react";
 import HomeLayout from "../components/LandingPage/HomeLayout";
 import { Input ,InputRightElement ,InputGroup } from "@chakra-ui/react";
 import { BsSearch } from "react-icons/bs";
+import ProjectCard from "../components/project/ProjectCard";
+
+const projects = [{
+    name : 'Log Tracker',
+    description : 'A simple log tracker app',
+    techStack : ['Nodejs' , 'Typescript' ,'Reactjs' , 'Chakra UI'],
+    rating : '4.5'
+},
+{
+    name : 'Water Tracker',
+    description : 'A simple water tracker app',
+    techStack : ['Nodejs' , 'Typescript' ,'Reactjs' , 'Chakra UI'],
+    rating : '4.3'
+}]
 
 const Dashboard = () => {
     // const [search , setSearch] = React.useState<string>("")
@@ -23,6 +37,11 @@ const Dashboard = () => {
                 </InputRightElement>
             </InputGroup>
             </HStack>
+            <VStack>
+                {projects.map((project , index) => (
+                    <ProjectCard key={index} project={project} />
+                ))}
+            </VStack>
         </HomeLayout>
     )
 }

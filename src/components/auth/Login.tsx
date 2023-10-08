@@ -12,6 +12,7 @@ import {
     Text,
     useColorModeValue,
     FormErrorMessage,
+    Center,
     HStack,
     useToast  } from '@chakra-ui/react'
   import { useState } from 'react'
@@ -22,6 +23,7 @@ import {
   import { useLoginMutation } from './authApiSlice'
 import { useAppDispatch } from '../../api/store'
 import { setInitialCredentials } from './authSlice'
+import { FcGoogle } from 'react-icons/fc'
 import { useNavigate } from 'react-router-dom'
 
   type FormValues = {
@@ -66,23 +68,22 @@ import { useNavigate } from 'react-router-dom'
 
     }
 
-    // const handleGoogleAuth = async  () => {
-    //     try {
-    //         const url = 'http://nasa-hackathon.merodera.com';
-    //         const response = await fetch(`http://nasa-hackathon.merodera.com/auth/o/google-oauth2/?redirect_uri=http://nasa-hackathon.merodera.com`);
-    //         const data = await response.json(); 
-    //         console.log(data);                                  
+    const handleGoogleAuth = async  () => {
+        try {
+            const response = await fetch(`http://172.105.62.58/auth/o/google-oauth2/?redirect_uri=http://172.105.62.58/`);
+            const data = await response.json(); 
+            console.log(data);                                  
 
-    //     }
-    //     catch (error) {
-    //         console.log(error);
-    //         toast({
-    //             title : "Account Login Failed",
-    //             status : 'error',
-    //             duration : 3000,
-    //         })
-    //     }
-    // }
+        }
+        catch (error) {
+            console.log(error);
+            toast({
+                title : "Account Login Failed",
+                status : 'error',
+                duration : 3000,
+            })
+        }
+    }
 
   
     return (
@@ -162,11 +163,11 @@ import { useNavigate } from 'react-router-dom'
                  <Link to={'/signup'}><Text color={'blue.400'}>SignUp</Text></Link>
               </HStack>
               <Stack>
-              {/* <Button w={'full'} variant={'outline'} leftIcon={<FcGoogle />} onClick={handleGoogleAuth}>
+              <Button w={'full'} variant={'outline'} leftIcon={<FcGoogle />} onClick={handleGoogleAuth}>
                 <Center>
                     <Text>Sign in with Google</Text>
                 </Center>
-              </Button> */}
+              </Button>
               </Stack>
             </Stack>
             </form>

@@ -30,7 +30,8 @@ const Feature = ({ title, text, icon }: FeatureProps) => {
 
 export default function FeatureUI() {
   return (
-    <Box px={'36'} my={'14'}>
+    <Box px={['8','16','36']} my={['4' , '6' ,'12']}>
+      <Text textAlign={'center'} fontSize={{ base: '3xl', sm: '4xl', md: '6xl' }} color={'blue.600'} my={12}>  Features </Text>
       <SimpleGrid columns={{ base: 1, md: 3 }} spacing={10}>
         <Feature
           icon={<Icon as={FcAssistant} w={10} h={10} />}
