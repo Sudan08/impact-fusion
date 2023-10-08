@@ -35,23 +35,23 @@ export default function FeatureUI() {
       <SimpleGrid columns={{ base: 1, md: 3 }} spacing={10}>
         <Feature
           icon={<Icon as={FcAssistant} w={10} h={10} />}
-          title={'Lifetime Support'}
+          title={'Our Mission'}
           text={
-            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore...'
+            'We are developing a web application where users can upload their open-source projects, and contributors can participate in them if they wish. Our simple landing page contains essential content required for an effective introduction.'
           }
         />
         <Feature
           icon={<Icon as={FcDonate} w={10} h={10} />}
-          title={'Unlimited Donations'}
+          title={'User Actions'}
           text={
-            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore...'
+            'Users can create projects with basic details, and they also have a profile section where they can showcase their projects, skills, the projects they are following or own, and their areas of interest.'
           }
         />
         <Feature
           icon={<Icon as={FcInTransit} w={10} h={10} />}
-          title={'Instant Delivery'}
+          title={'Project Actions'}
           text={
-            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore...'
+            'Our system tracks the number of projects created, projects followed, and projects contributed to by each user from the backend. For users who want to search for projects or explore them, we offer various filters to facilitate their search. '
           }
         />
       </SimpleGrid>

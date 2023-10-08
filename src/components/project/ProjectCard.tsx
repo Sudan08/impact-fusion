@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 type ProjectCardProps = {
     project : {
-    name : string
+    title : string
     description : string
     techStack : string[]
     rating : string
@@ -14,12 +14,12 @@ type ProjectCardProps = {
 }
 
 export default function ProjectCard( { project } : ProjectCardProps ) {
-    const {name , description , techStack , rating , id} = project;
+    const {title , description , techStack , rating , id} = project;
     
   return (
     <Stack p="8" boxShadow="lg" m="4" borderRadius="sm">
       <Stack direction="row" alignItems="center">
-        <Text fontWeight="semibold" fontSize={'3xl'}>{name}</Text>
+        <Text fontWeight="semibold" fontSize={'3xl'}>{title}</Text>
       </Stack>
 
       <VStack justifyContent="flex-start" alignItems={"flex-start"}>

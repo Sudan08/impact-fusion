@@ -9,7 +9,7 @@ import {
   
   const baseQuery = fetchBaseQuery({
     // baseUrl: 'http://13.229.218.65/api/v4',
-    baseUrl: 'http://172.105.62.58',
+    baseUrl: 'http://nasa-hackathon.tnbswap.com/',
     // credentials: 'include',
     prepareHeaders: (headers, { getState }) => {
       const { auth } = getState() as RootState;
@@ -64,7 +64,6 @@ import {
   export const apiSlice = createApi({
     baseQuery: baseQueryWithReAuth,
     reducerPath: 'api',
-    tagTypes: ['Schedules', 'LostAndFound', 'const'],
+    tagTypes: ['projects'],
     endpoints: (_builder) => ({}),
   });
-  

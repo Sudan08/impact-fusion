@@ -7,7 +7,7 @@ import ProtectedLayout from './components/layout/ProtectedLayout'
 import ProjectPage from './pages/ProjectPage'
 import { useAppSelector } from './api/store'
 import { selectAccessToken } from './components/auth/authSlice'
-
+import BlogPage from './pages/BlogPage'
 
 function App() {
   // useEffect(()=>{
@@ -39,6 +39,7 @@ function App() {
       </Route>  
       <Route path="/signup" element={<SignUpPage />} />
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/blog" element={<BlogPage />} />
      </Routes>
     </BrowserRouter>
   )

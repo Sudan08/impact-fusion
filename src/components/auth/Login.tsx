@@ -15,7 +15,7 @@ import {
     Center,
     HStack,
     useToast  } from '@chakra-ui/react'
-  import { useState } from 'react'
+  import { useEffect, useState  } from 'react'
   import { useForm } from 'react-hook-form'
   import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
 //   import apiUrl from '../../api/axiosConfig'
@@ -23,8 +23,9 @@ import {
   import { useLoginMutation } from './authApiSlice'
 import { useAppDispatch } from '../../api/store'
 import { setInitialCredentials } from './authSlice'
+import { useNavigate  , useLocation} from 'react-router-dom'
+import queryString from 'query-string'
 import { FcGoogle } from 'react-icons/fc'
-import { useNavigate } from 'react-router-dom'
 
   type FormValues = {
       username : string
@@ -33,6 +34,27 @@ import { useNavigate } from 'react-router-dom'
   }
   
   export default function SignupCard() {
+    const location = useLocation();
+
+    console.log(location);
+
+    useEffect(() => {
+        const values = queryString.parse(location.search);
+        const state = values.state ? values.state : null;
+        const code = values.code ? values.code : null;
+
+        console.log('State: ' + state);
+        console.log('Code: ' + code);
+
+        if (state && code) {
+            // googleAuthenticate(state, code);
+        }
+    }, [location]);
+
+
+
+    
+    
     const { register ,handleSubmit , formState:{errors }}  = useForm<FormValues>();
     const [showPassword, setShowPassword] = useState(false)
     const toast = useToast();
@@ -70,7 +92,7 @@ import { useNavigate } from 'react-router-dom'
 
     const handleGoogleAuth = async  () => {
         try {
-            const response = await fetch(`http://nasa-hackathon.tnbswap.com/auth/o/google-oauth2/?redirect_uri=http://nasa-hackathon.tnbswap.com`);
+            const response = await fetch(`http://nasa-hackathon.tnbswap.com/auth/o/google-oauth2/?redirect_uri=http://localhost:5173`);
             const data = await response.json(); 
             window.location.replace(data.authorization_url);
         }
@@ -162,14 +184,14 @@ import { useNavigate } from 'react-router-dom'
                  <Link to={'/signup'}><Text color={'blue.400'}>SignUp</Text></Link>
               </HStack>
               <Stack>
-              <Button w={'full'} variant={'outline'} leftIcon={<FcGoogle />} onClick={handleGoogleAuth}>
+              </Stack>
+            </Stack>
+            </form>
+              <Button w={'full'} type='button' variant={'outline'} leftIcon={<FcGoogle />} onClick={handleGoogleAuth}>
                 <Center>
                     <Text>Sign in with Google</Text>
                 </Center>
               </Button>
-              </Stack>
-            </Stack>
-            </form>
           </Box>
         </Stack>
       </Flex>

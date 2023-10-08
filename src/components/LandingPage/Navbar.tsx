@@ -10,8 +10,6 @@ import {
   MenuList,
   MenuItem,
   useDisclosure,
-  useColorModeValue,
-  Stack,
   Image,
 } from '@chakra-ui/react'
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
@@ -21,10 +19,9 @@ import { useAppSelector } from '../../api/store'
 import { selectAccessToken } from '../auth/authSlice'
 import { logout } from '../auth/authSlice'
 import { useDispatch } from 'react-redux'
+import ModalForm from '../project/ProjectModal';
 
-interface Props {
-  children: React.ReactNode
-}
+
 
 
 
@@ -53,9 +50,12 @@ export default function Navbar() {
             </Box>
           </HStack>
           <HStack>
-            <Button colorScheme={'blue'}>
-              Create Project
-            </Button>
+            {isAuthenticated.length > 0 ? <ModalForm /> : null}  
+              <Link to="/blog">
+              <Button colorScheme={'blue'}>
+              Blog
+              </Button>
+              </Link>
           </HStack>
           <Flex alignItems={'center'}>
             {isAuthenticated.length > 0 ? <Menu>

@@ -1,29 +1,42 @@
-// import React, { useEffect } from 'react';
-// import { Link, useLocation } from 'react-router-dom';
-// import { connect } from 'react-redux';
-// import { googleAuthenticate } from '../actions/auth';
-// import queryString from 'query-string';
 
-// const Google = ({ googleAuthenticate }) => {
-//     let location = useLocation();
 
-//     useEffect(() => {
-//         const values = queryString.parse(location.search);
-//         const state = values.state ? values.state : null;
-//         const code = values.code ? values.code : null;
+export const googleAuthenticate = async (state : string , code: string) => {
 
-//         console.log('State: ' + state);
-//         console.log('Code: ' + code);
+    if (state && code) {
+      
 
-//         if (state && code) {
-//             googleAuthenticate(state, code);
-//         }
-//     }, [location]);
 
-//     return (
-//         <div className='container'>
-//         </div>
-//     );
-// };
+        const details: { state: string; code: string } = {
+            state: state,
+            code: code,
+        };
+        console.log(details);
+        const formBody = Object.keys(details)
+            .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(details[key as keyof typeof details]))
+            .join("&");
+        console.log(formBody);
 
-// export default connect(null, { googleAuthenticate })(Google);
+        try {
+            const res = await fetch(
+                `http://nasa-hackathon.tnbswap.com/auth/o/google-oauth2/?${formBody}/`,{
+                    method : 'POST',
+                    headers : {
+                        'Content-Type' : 'application/x-www-form-urlencoded'
+                    },
+                }
+            )
+            console.log(res);
+
+            // dispatch(
+            //     setInitialCredentials({
+            //         accessToken : data.access,
+            //         refreshToken : data.refresh,
+            //         username : values.username,
+            //     })   
+            // )
+
+        } catch (err) {
+            console.log(err);
+        }
+    }
+};

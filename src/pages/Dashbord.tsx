@@ -3,10 +3,11 @@ import HomeLayout from "../components/LandingPage/HomeLayout";
 import { Input ,InputRightElement ,InputGroup } from "@chakra-ui/react";
 import { BsSearch } from "react-icons/bs";
 import ProjectCard from "../components/project/ProjectCard";
-import { projects } from "../data/fakeData";
-
+// import { projects } from "../data/fakeData";
+import { useGetProjectsQuery } from "../components/project/ProjectApiSlice";
 
 const Dashboard = () => {
+    const { data: projects  } = useGetProjectsQuery(null);
     return (
         <HomeLayout>
             <HStack mx={[12,24,36]} my={[4,8,12]} justifyContent={"center"} > 
@@ -22,7 +23,7 @@ const Dashboard = () => {
             </InputGroup>
             </HStack>
             <VStack>
-                {projects.map((project , index) => (
+                {projects?.map((project : any , index : number) => (
                     <ProjectCard key={index} project={project} />
                 ))}
             </VStack>

@@ -1,4 +1,3 @@
-import { projects } from "../data/fakeData";
 import { HStack, Text, VStack , Avatar , Tag, Button } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import HomeLayout from "../components/LandingPage/HomeLayout";
@@ -6,10 +5,11 @@ import { AiFillGithub } from "react-icons/ai";
 import { IconButton } from "@chakra-ui/react";
 import {AiFillRocket} from 'react-icons/ai';
 import { AiFillFacebook } from "react-icons/ai";
+import { useGetProjectbyIdQuery } from "../components/project/ProjectApiSlice";
 
 const ProjectPage = () => {
     const { id } =useParams<{id : string}>();
-    const filteredProject = projects.filter((project) => project.id === Number(id))[0];
+    const {data : project } = useGetProjectbyIdQuery(id);
     return (
         <div>
         <HomeLayout>
@@ -24,18 +24,18 @@ const ProjectPage = () => {
                     colorScheme='blue'
                     aria-label='Search database'
                     icon={<AiFillRocket />}
-/>
+            />
                 </HStack>
             </HStack>
             <HStack justifyContent={'space-between'} gap={'10'} width={'100%'}>
-                <Text fontSize={'2xl'}>Name : {filteredProject.name}</Text>
-                <Text textAlign={'center'} fontSize={'2xl'}>Domain : <Tag variant={'solid'} colorScheme="green" size={'lg'}>{filteredProject.domain} </Tag></Text>
-                <Text textAlign={'center'} fontSize={'2xl'}>Level : <Tag variant={'solid'} colorScheme="green" size={'lg'}>{filteredProject.level} </Tag></Text>
+                <Text fontSize={'2xl'}>Name : {project?.title}</Text>
+                <Text textAlign={'center'} fontSize={'2xl'}>Domain : <Tag variant={'solid'} colorScheme="green" size={'lg'}>{project?.domains[0].name} </Tag></Text>
+                <Text textAlign={'center'} fontSize={'2xl'}>Level : <Tag variant={'solid'} colorScheme="green" size={'lg'}>{project?.level} </Tag></Text>
             </HStack>
             <HStack my={8} justifyContent={'space-between'} width={'100%'}>
                 <VStack alignItems={'flex-start'}>
                 <Text fontSize={'xl'}>Description</Text>
-                <Text>{filteredProject.description}</Text>
+                <Text>{project?.description}</Text>
                 </VStack>
                 <VStack mx={8}>
                 <Text fontSize={'xl'}>Tech Stack</Text>

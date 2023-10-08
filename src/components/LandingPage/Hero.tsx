@@ -22,15 +22,13 @@ export default function Hero() {
           fontWeight={600}
           fontSize={{ base: '3xl', sm: '4xl', md: '6xl' }}
           lineHeight={'110%'}>
-          Funding Collaboration{' '}
+          Create{' '}
           <Text as={'span'} color={'blue.600'}>
-            for better future.
+            Connect Collaborate
           </Text>
         </Heading>
         <Text color={'gray.500'} maxW={'3xl'}>
-          Never miss a meeting. Never be late for one too. Keep track of your meetings and
-          receive smart reminders in appropriate times. Read your smart “Daily Agenda”
-          every morning.
+          Impact Fusion is a platform where you can create projects , connect with other developers and collaborate with them.
         </Text>
         <Flex w={'full'} justifyContent={'center'} alignItems={'center'}>
           <Image src="/colab.png" alt="collaborative" height={{ sm: '24rem', lg: '28rem' }} mt={{ base: 4, sm: 3 }} />

@@ -16,6 +16,7 @@
     "@emotion/styled": "^11.11.0",
     "@reduxjs/toolkit": "^1.9.7",
     "axios": "^1.5.1",
+    "chakra-react-select": "^4.7.3",
     "eslint-plugin-react": "^7.33.2",
     "framer-motion": "^10.16.4",
     "query-string": "^8.1.0",
