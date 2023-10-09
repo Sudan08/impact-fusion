@@ -16,7 +16,7 @@ import {
   HStack,
   useToast
 } from '@chakra-ui/react'
-import { useEffect, useState } from 'react'
+import {  useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
 //   import apiUrl from '../../api/axiosConfig'
@@ -24,8 +24,8 @@ import { Link } from 'react-router-dom'
 import { useLoginMutation } from './authApiSlice'
 import { useAppDispatch } from '../../api/store'
 import { setInitialCredentials } from './authSlice'
-import { useNavigate, useLocation } from 'react-router-dom'
-import queryString from 'query-string'
+import { useNavigate } from 'react-router-dom'
+// import queryString from 'query-string'
 import { FcGoogle } from 'react-icons/fc'
 
 type FormValues = {
