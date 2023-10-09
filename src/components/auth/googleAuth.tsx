@@ -17,7 +17,7 @@ export const googleAuthenticate = async (state : string , code: string) => {
 
         try {
             const res = await fetch(
-                `http://nasa-hackathon.tnbswap.com/auth/o/google-oauth2/?${formBody}/`,{
+                `https://nasa-hackathon.tnbswap.com/auth/o/google-oauth2/?${formBody}/`,{
                     method : 'POST',
                     headers : {
                         'Content-Type' : 'application/x-www-form-urlencoded'
