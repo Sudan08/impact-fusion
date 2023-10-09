@@ -72,7 +72,7 @@ export default function SignupCard() {
 
   const handleGoogleAuth = async () => {
     try {
-      const response = await fetch(`http://nasa-hackathon.tnbswap.com/auth/o/google-oauth2/?redirect_uri=http://localhost:5173`);
+      const response = await fetch(`https://nasa-hackathon.tnbswap.com/auth/o/google-oauth2/?redirect_uri=http://localhost:5173`);
       const data = await response.json();
       window.location.replace(data.authorization_url);
     }
