@@ -16,7 +16,7 @@ const ArticleList = () => {
       <Heading as="h1">Open Source Projects</Heading>
       <VStack paddingTop="40px" spacing="2" alignItems="flex-start">
 
-<Text >NASA BPS Open Science Data Repository</Text>
+<Text fontSize={'xl'}>NASA BPS Open Science Data Repository</Text>
 <p>Integrated Biological Databases</p>
 
 <Text  fontSize={'xl'}>GeneLab: Open Science for Exploration</Text>

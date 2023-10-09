@@ -10,7 +10,6 @@ export const googleAuthenticate = async (state : string , code: string) => {
             state: state,
             code: code,
         };
-        console.log(details);
         const formBody = Object.keys(details)
             .map((key) => encodeURIComponent(key) + "=" + encodeURIComponent(details[key as keyof typeof details]))
             .join("&");

@@ -13,8 +13,9 @@ import {
     Input,
     useToast,
     Select,
+    HStack,
   } from '@chakra-ui/react';
-import React , { useState } from "react";
+import React , { useEffect, useState } from "react";
 
 
 interface Project {
@@ -73,6 +74,12 @@ const ModalForm = () => {
         setLinks([...links , { title : 'LinkedIn' , url : linksref.current.value }]);
         }
     }
+
+    useEffect(()=>{
+        setFormData({ ...formData, stacks: stack , domains : domain , links : links });
+    },[stack , domain , links])
+
+    console.log(formData);
 
 
     const createProject = () => {
@@ -151,29 +158,36 @@ const ModalForm = () => {
                 </FormControl>
                 <FormControl>
                   <FormLabel htmlFor="stacks">stacks</FormLabel>
+                  <HStack>
                   <Input
                   id="stacks"
                   ref = {stackref}
                   />
 
                 <Button onClick={handleStack}>Insert</Button>
+                </HStack>
                 </FormControl>
                 <FormControl>
                     <FormLabel htmlFor="domains">domains</FormLabel>
+                    <HStack>
                     <Input
                     id="domains"
                     ref = {domainref}
                     />
                     <Button onClick={handleDomain}>Insert</Button>
+                    </HStack>
+
                 </FormControl>
 
                 <FormControl>
                     <FormLabel htmlFor="links">Linkedin</FormLabel>
+                    <HStack>
                     <Input
                     id="links"
                     ref = {linksref}
                     />
                     <Button onClick={handleLinks}>Insert</Button>
+                    </HStack>
                 </FormControl>
                 
               

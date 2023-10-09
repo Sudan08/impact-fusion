@@ -31,7 +31,7 @@ export default function SignupCard() {
   const [showPassword, setShowPassword] = useState(false)
   const toast = useToast();
   const handleSignup = async ( values : FormValues) =>{
-    fetch('http://172.105.62.58/auth/users/',{
+    fetch('http://nasa-hackathon.tnbswap.com/auth/users/',{
       method : 'POST',
       headers : {
         'Content-Type' : 'application/json'

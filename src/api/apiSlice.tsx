@@ -8,9 +8,7 @@ import {
   import { RootState } from './store';
   
   const baseQuery = fetchBaseQuery({
-    // baseUrl: 'http://13.229.218.65/api/v4',
     baseUrl: 'http://nasa-hackathon.tnbswap.com/',
-    // credentials: 'include',
     prepareHeaders: (headers, { getState }) => {
       const { auth } = getState() as RootState;
       const token = auth.accessToken;
